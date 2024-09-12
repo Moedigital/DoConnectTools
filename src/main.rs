@@ -1,8 +1,6 @@
 use serde::{Deserialize, Serialize};
 use std::fs;
-use std::thread;
 use std::time::Duration;
-extern crate get_if_addrs;
 
 use get_if_addrs::{get_if_addrs, IfAddr};
 use reqwest::StatusCode; // 加上StatusCode来迎合服务端,但解决不了一点
@@ -18,11 +16,11 @@ struct Config {
 }
 
 #[tokio::main]
-async fn main() -> Result<(), Box<dyn std::error::Error>> {
+async fn main() -> anyhow::Result<()> {
     let define_version = "Beta 1.12.113";
-    let file_content = fs::read_to_string("config.yml")?;
+    let file_content = fs::read_to_string("config.toml")?;
 
-    let config: Config = serde_yaml::from_str(&file_content)?;
+    let config: Config = toml::from_str(&file_content)?;
 
     println!("DoConnectTools {}", define_version);
     println!("Server Host: {}", config.server_host);

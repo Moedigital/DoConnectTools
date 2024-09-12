@@ -1,0 +1,6 @@
+server_host = "localhost"                       # 远程服务器地址,必要,程序将尝试从这里请求更新
+server_port = 21620                             # 远程服务器端口 必要,程序将尝试从这里请求更新
+program_simple_name = "define_simple_name_here" # 程序简称,必要,程序将发送此字段到服务器请求更新数据和更新包体
+version = "0.0.0"                               # 程序版本,默认0.0.0 与远程服务器不同时进行更新或回退
+coredir = "./core/"
+MachineID = ""                                  # 机台识别码,可选指定,仅供内部识别使用
