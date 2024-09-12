@@ -15,8 +15,12 @@ struct Config {
     machine_id: Option<String>,
 }
 
-#[tokio::main]
-async fn main() -> anyhow::Result<()> {
+fn main() -> anyhow::Result<()> {
+    let rt = tokio::runtime::Runtime::new()?;
+    rt.block_on(async_main())
+}
+
+async fn async_main() -> anyhow::Result<()> {
     let define_version = "Beta 1.12.113";
     let file_content = fs::read_to_string("config.toml")?;
 
